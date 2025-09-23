@@ -6,9 +6,9 @@ from tests.constants import PEOPLE_FILE
 
 @pytest.mark.unit
 @pytest.mark.high
-def test_load_positive_people_list_has_size_2(request):
+def test_load_positive_people_list_has_correct_size(request):
     """Test function load"""
-    assert len(load(PEOPLE_FILE)) == 2
+    assert len(load(PEOPLE_FILE)) == 3
 
 
 @pytest.mark.unit
