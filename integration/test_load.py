@@ -7,4 +7,4 @@ def test_load():
     result = check_output(
         ["dundie", "load", "tests/assets/people.csv"]
     ).decode("utf-8").strip().split('\n\n')
-    assert len(result) == 2
+    assert len(result) == 3

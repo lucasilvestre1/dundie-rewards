@@ -18,6 +18,10 @@ jobs:
         python-version: ["3.9", "3.10"]
         os: [ubuntu-latest]
     runs-on: ${{matrix.os}}
+    permissions:
+      checks: write       # necessário para criar check-runs
+      contents: read
+      pull-requests: write  # se a action também comenta no PR
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -27,4 +31,10 @@ jobs:
       - name: Install Project
         run: pip install '.[test]'
       - name: Run Tests
-        run: pytest -vv tests integration
+        run: pytest -v --junitxml=test-result.xml
+      - name: publish junit results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: test-result.xml
+          check_name: Test Result Python (${{matrix.python-version}})
