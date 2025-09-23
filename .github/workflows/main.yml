@@ -18,6 +18,8 @@ jobs:
         python-version: ["3.9", "3.10"]
         os: [ubuntu-latest]
     runs-on: ${{matrix.os}}
+    permissions:
+      checks: write       # necessário para criar check-runs
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
