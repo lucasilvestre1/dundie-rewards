@@ -1,5 +1,5 @@
 # Makefile
-.PHONY: install virtualenv ipython clean test watch
+.PHONY: install virtualenv ipython clean test watch pflake8
 
 install:
 	@echo "Hello installing"
@@ -12,6 +12,10 @@ virtualenv:
 
 ipython:
 	@.venv/bin/ipython -i
+
+
+lint:
+	@.venv/bin/pflake8
 
 
 test:
