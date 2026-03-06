@@ -1,5 +1,7 @@
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
+
 
 def read(*paths):
     """Read the contents of a text file safely.
@@ -8,19 +10,20 @@ def read(*paths):
     >>> read("README.md")
     ...
     """
+
     rootpath = os.path.dirname(__file__)
     filepath = os.path.join(rootpath, *paths)
     with open(filepath) as file_read:
         return file_read.read().strip()
-    
+
+
 def read_requirements(path):
     """Return a list of requirements from a text file"""
     return [
         line.strip()
-        for line in read(path).split('\n')
-        if not line.startswith(("#", "git+", "-", "\""))
+        for line in read(path).split("\n")
+        if line.strip() and not line.startswith(("#", "git+", "-", '"'))
     ]
-
 
 
 setup(
@@ -32,14 +35,10 @@ setup(
     author="Lucas Silvestre",
     python_requires=">=3.8",
     packages=find_packages(),
-    entry_points={
-        "console_scripts": [
-            "dundie = dundie.__main__:main"
-        ]
-    },
+    entry_points={"console_scripts": ["dundie = dundie.__main__:main"]},
     install_requires=read_requirements("requirements.txt"),
     extras_require={
         "test": read_requirements("requirements.test.txt"),
-        "dev": read_requirements("requirements.dev.txt")
-    }
+        "dev": read_requirements("requirements.dev.txt"),
+    },
 )
