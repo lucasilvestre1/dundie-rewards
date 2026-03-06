@@ -26,8 +26,14 @@ jobs:
 
       - name: Install Project
         run: pip install '.[test]'
-      - name: look for style errors
+      - name: Look for style errors
         run: pflake8
+      - name: Remove unutilized imports
+        run: autoflake
+      - name: Check for importing syle errors
+        run: isort
+      - name: Look for style errors
+        run: black --check --diff dundie tests integration
 
   tests:
     needs: lints

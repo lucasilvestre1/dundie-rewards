@@ -1,5 +1,5 @@
 # Makefile
-.PHONY: install virtualenv ipython clean test watch pflake8
+.PHONY: install virtualenv ipython clean test watch pflake8 fmt
 
 install:
 	@echo "Hello installing"
@@ -16,6 +16,12 @@ ipython:
 
 lint:
 	@.venv/bin/pflake8
+
+
+fmt:
+	@.venv/bin/autoflake --remove-all-unused-imports --recursive --in-place .
+	@.venv/bin/isort .
+	@.venv/bin/black .
 
 
 test:

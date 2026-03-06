@@ -11,3 +11,7 @@ exclude = [".venv",".vscodelocal"]
 max-line-length = 79
 # extend-ignore = "W291"
 
+[tool.black]
+line-length = 79
+target-version = ["py36", "py37"]
+
