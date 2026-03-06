@@ -22,7 +22,7 @@ def read_requirements(path):
     return [
         line.strip()
         for line in read(path).split("\n")
-        if not line.startswith(("#", "git+", "-", '"'))
+        if line.strip() and not line.startswith(("#", "git+", "-", '"'))
     ]
 
 
